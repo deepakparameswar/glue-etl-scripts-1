@@ -14,7 +14,7 @@ job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
 # Read CSV from S3
-input_path = "s3://<your-bucket>/input/sample.csv"
+input_path = "s3://nishant-glue-bucket-234/input/sample.csv"
 datasource = glueContext.create_dynamic_frame.from_options(
     connection_type="s3",
     connection_options={"paths": [input_path], "recurse": True},
@@ -29,7 +29,7 @@ filtered_data = Filter.apply(
 )
 
 # Write output as Parquet
-output_path = "s3://<your-bucket>/output/"
+output_path = "s3://nishant-glue-bucket-234/output/"
 glueContext.write_dynamic_frame.from_options(
     filtered_data,
     connection_type="s3",
